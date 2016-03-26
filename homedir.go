@@ -38,11 +38,13 @@ func Dir() (string, error) {
 
 	var result string
 	var err error
-	return dirUnix()
-
-	if err != nil {
-		return "", err
+	if runtime.GOOS == "windows" {
+		return dirWindows()
+	} else {
+		// Unix-like system, so just assume Unix
+		return dirUnix()
 	}
+
 	homedirCache = result
 	return result, nil
 }
