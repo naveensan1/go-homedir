@@ -38,12 +38,7 @@ func Dir() (string, error) {
 
 	var result string
 	var err error
-	if runtime.GOOS == "windows" {
-		result, err = dirWindows()
-	} else {
-		// Unix-like system, so just assume Unix
-		result, err = dirUnix()
-	}
+	return dirUnix()
 
 	if err != nil {
 		return "", err
